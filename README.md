@@ -42,13 +42,13 @@ Project ki root directory me `.env.local` file me ye keys set hoti hain:
 
 ```env
 # Admin Credentials
-ADMIN_EMAIL=nitinsaini@gmail.com
-ADMIN_PASSWORD=admin123
-NEXTAUTH_SECRET=7c1e87205446ccf1694a6af2acdf7264f62c12ff2dd5a76105e7c8846b3b989a
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=your_secure_password
+NEXTAUTH_SECRET=your_nextauth_secret_key
 NEXTAUTH_URL=http://localhost:3000
 
 # MongoDB Database Connection
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.ilxsshb.mongodb.net/
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/resincreations?retryWrites=true&w=majority
 
 # Razorpay Online Payments
 RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXXXX
@@ -56,15 +56,15 @@ RAZORPAY_KEY_SECRET=XXXXXXXXXXXXXXXXXXXX
 NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXXXX
 
 # Cloudinary Cloud Image Uploads
-CLOUDINARY_CLOUD_NAME=jdkegncv
-CLOUDINARY_API_KEY=574738273458939
-CLOUDINARY_API_SECRET=k-fuwkHTD2XUgFpeDmpSXZ7s-rk
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
 # Business & Social Links
 NEXT_PUBLIC_WHATSAPP_NUMBER=919876543210
 NEXT_PUBLIC_PHONE_NUMBER=+91 98765 43210
-NEXT_PUBLIC_EMAIL=newkhushiresincreations@gmail.com
-NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/newkhushiresincreations
+NEXT_PUBLIC_EMAIL=contact@example.com
+NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/your_handle
 ```
 
 ---
@@ -72,8 +72,8 @@ NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/newkhushiresincreations
 ## 🔐 Admin Credentials & Login
 
 - **Admin Login URL:** `http://localhost:3000/admin/login`
-- **Default Email:** `nitinsaini@gmail.com`
-- **Default Password:** `admin123`
+- **Default Email:** Apne `.env.local` me set karein (`ADMIN_EMAIL`)
+- **Default Password:** Apne `.env.local` me set karein (`ADMIN_PASSWORD`)
 
 ### Admin ID & Password Kaise Change Karein?
 1. Project ki root directory me `.env.local` file kholein.
