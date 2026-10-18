@@ -1,16 +1,25 @@
 import Link from 'next/link';
+import {
+  Sparkles,
+  KeyRound,
+  Gem,
+  Frame,
+  Home as HomeIcon,
+  Palette,
+  Gift
+} from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product';
 
-const categories = [
-  { name: 'Resin Keychains', slug: 'resin-keychains', icon: '🔑', description: 'Beautiful custom keychains' },
-  { name: 'Resin Jewelry', slug: 'resin-jewelry', icon: '💎', description: 'Elegant earrings, pendants & more' },
-  { name: 'Photo Frames', slug: 'resin-photo-frames', icon: '🖼️', description: 'Preserve memories in resin' },
-  { name: 'Nameplates', slug: 'resin-nameplates', icon: '🏠', description: 'Custom door & desk nameplates' },
-  { name: 'Custom Items', slug: 'custom-items', icon: '🎨', description: 'Made just for you' },
-  { name: 'Festival Special', slug: 'festival-special', icon: '🎉', description: 'Seasonal collections' },
-];
+const categoryMap = {
+  'resin-keychains': { name: 'Resin Keychains', Icon: KeyRound, description: 'Personalized initial letters, glitter flakes, and pocket-sized keepsakes.' },
+  'resin-jewelry': { name: 'Resin Jewelry', Icon: Gem, description: 'Real dried petals and golden flakes set in crystal earrings, rings & pendants.' },
+  'resin-photo-frames': { name: 'Photo Frames', Icon: Frame, description: 'Preserve wedding, anniversary, and cherished moments encased in gloss resin.' },
+  'resin-nameplates': { name: 'Nameplates', Icon: HomeIcon, description: 'Statement entrance and desk nameplates tailored with embossed typography.' },
+  'custom-items': { name: 'Custom Items', Icon: Palette, description: 'Wedding varmala preservation, resin clocks, coasters, and custom creations.' },
+  'festival-special': { name: 'Festival Special', Icon: Gift, description: 'Festive pooja thalis, custom rakhi designs, and festive celebration hampers.' },
+};
 
 const allDemoProducts = [
   { _id: '1', name: 'Galaxy Resin Keychain', slug: 'galaxy-resin-keychain', price: 299, discountPrice: 249, category: 'resin-keychains', images: [{url: '/images/placeholder.svg'}], featured: true, bestseller: true, inStock: true },
@@ -23,7 +32,8 @@ const allDemoProducts = [
 
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
-  const category = categories.find(c => c.slug === slug) || { name: 'Category', slug, icon: '✨', description: 'Browse our collection' };
+  const catData = categoryMap[slug] || { name: 'Category', Icon: Sparkles, description: 'Browse our collection' };
+  const CatIcon = catData.Icon;
   
   let categoryProducts = [];
   try {
@@ -47,14 +57,16 @@ export default async function CategoryPage({ params }) {
         <nav className="text-sm text-gray-500 mb-8">
           <Link href="/" className="hover:text-violet-600">Home</Link> &gt; 
           <Link href="/products" className="hover:text-violet-600 mx-1">Categories</Link> &gt; 
-          <span className="text-gray-900 mx-1">{category.name}</span>
+          <span className="text-gray-900 mx-1">{catData.name}</span>
         </nav>
 
         {/* Hero */}
-        <div className="bg-white rounded-2xl p-8 mb-8 text-center shadow-sm border border-violet-100 flex flex-col items-center">
-          <span className="text-5xl mb-4">{category.icon}</span>
-          <h1 className="text-3xl font-bold text-violet-900 mb-2 font-serif">{category.name}</h1>
-          <p className="text-gray-600">{category.description}</p>
+        <div className="bg-white rounded-3xl p-8 md:p-10 mb-10 text-center shadow-xs border border-violet-100 flex flex-col items-center relative overflow-hidden">
+          <div className="w-16 h-16 rounded-2xl bg-violet-100 text-violet-700 flex items-center justify-center mb-4 shadow-xs">
+            <CatIcon className="w-8 h-8" />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 font-serif">{catData.name}</h1>
+          <p className="text-gray-600 max-w-xl text-sm sm:text-base leading-relaxed">{catData.description}</p>
         </div>
 
         {/* Products */}
