@@ -59,7 +59,7 @@ export default function AddProduct() {
       if (data.url) {
         setFormData(prev => ({
           ...prev,
-          images: [...prev.images, data.url]
+          images: [data.url, ...(prev.images || []).filter(u => !u.includes('placeholder.svg'))]
         }));
       } else {
         alert(data.error || 'Failed to upload image');
@@ -237,7 +237,10 @@ export default function AddProduct() {
               type="button"
               onClick={() => {
                 if (imageUrlInput.trim()) {
-                  setFormData(prev => ({ ...prev, images: [...prev.images, imageUrlInput.trim()] }));
+                  setFormData(prev => ({
+                    ...prev,
+                    images: [imageUrlInput.trim(), ...(prev.images || []).filter(u => !u.includes('placeholder.svg'))]
+                  }));
                   setImageUrlInput('');
                 }
               }}

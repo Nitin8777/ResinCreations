@@ -1,72 +1,176 @@
 import React from 'react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { Sparkles, MessageCircle, ShoppingBag } from 'lucide-react';
+import {
+  Sparkles,
+  MessageCircle,
+  ShoppingBag,
+  ArrowRight,
+  ShieldCheck,
+  Star,
+  CheckCircle2,
+  Heart,
+  Truck
+} from 'lucide-react';
 
 export default function HeroBanner() {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-violet-900 via-violet-700 to-indigo-800 text-white min-h-[600px] flex items-center">
-      {/* Decorative shapes */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-        <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-white blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 rounded-full bg-purple-300 blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute -bottom-20 left-1/3 w-80 h-80 rounded-full bg-pink-300 blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
+    <div className="relative overflow-hidden bg-gradient-to-b from-violet-950 via-slate-900 to-indigo-950 text-white min-h-[640px] lg:min-h-[700px] flex items-center">
+      {/* Ambient background glows */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-fuchsia-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/30 via-transparent to-transparent pointer-events-none" />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-violet-100 text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4 text-yellow-300" />
-            <span>Premium Resin Art</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Headlines & CTA */}
+          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+            
+            {/* Eyebrow Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-semibold tracking-wider uppercase shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+              <span>Bespoke Resin Studio · 100% Handmade</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif tracking-tight leading-[1.15] text-white">
+              Preserving Your <span className="bg-gradient-to-r from-amber-200 via-pink-200 to-violet-300 bg-clip-text text-transparent">Precious Moments</span> in Crystal-Clear Resin.
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              Hand-poured with real preserved botanicals, 24K gold foil flakes, and personalized details. From wedding keepsake photo frames to bespoke agate nameplates and sparkling jewelry.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <Link
+                href="/products"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all shadow-lg shadow-violet-600/30 hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>Explore Collections</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+              
+              <a
+                href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20order%20a%20custom%20resin%20creation.%20Can%20you%20help%20me?"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm transition-all backdrop-blur-md hover:-translate-y-0.5"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-400 fill-current" />
+                <span>Order Custom on WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Social Proof Strip */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-xs text-slate-300">
+              <div className="flex items-center -space-x-2">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                  alt="Customer"
+                  className="w-8 h-8 rounded-full border-2 border-slate-900 object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                  alt="Customer"
+                  className="w-8 h-8 rounded-full border-2 border-slate-900 object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                  alt="Customer"
+                  className="w-8 h-8 rounded-full border-2 border-slate-900 object-cover"
+                />
+                <div className="w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-[10px] flex items-center justify-center border-2 border-slate-900">
+                  +2.7k
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-1.5">
+                <div className="flex text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                  ))}
+                </div>
+                <span className="font-semibold text-white">4.9/5 Rating</span>
+                <span className="text-slate-400">· 2,700+ Delighted Customers</span>
+              </div>
+            </div>
+
           </div>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-violet-200">
-            Handcrafted Resin Art
-          </h1>
-          
-          <h2 className="text-xl md:text-2xl font-medium text-violet-100 mb-4">
-            Unique & Beautiful Creations Made with Love
-          </h2>
-          
-          <p className="text-lg text-violet-200 mb-10 max-w-2xl mx-auto">
-            Transform your ideas into stunning resin masterpieces. From elegant keychains and jewelry to personalized nameplates and custom photo frames.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link 
-              href="/products" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#D4AF37] hover:bg-[#C5A028] text-white font-semibold text-lg transition-all shadow-lg shadow-yellow-900/20 hover:scale-105"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              Shop Now
-            </Link>
-            <a 
-              href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20your%20resin%20art%20products.%20%F0%9F%8E%A8" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold text-lg transition-all backdrop-blur-sm hover:scale-105"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Order on WhatsApp
-            </a>
+
+          {/* Right Column: Layered 3D Visual Art Showcase */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            
+            {/* Main Showcase Frame */}
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 p-2 bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-md group">
+              <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                <img
+                  src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1000&q=80"
+                  alt="Handcrafted Resin Masterpiece"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                
+                {/* Bottom caption inside photo */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-[11px] font-semibold text-amber-300 uppercase tracking-wider">
+                    Signature Creation
+                  </p>
+                  <p className="text-base font-bold text-white font-serif">
+                    Gold-Leaf Floral Resin Agate
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Glass Badge 1 (Top Left) */}
+            <div className="absolute -top-4 -left-4 sm:-left-6 backdrop-blur-md bg-white/15 border border-white/30 rounded-2xl p-3 sm:p-4 shadow-xl text-white flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-amber-600 flex items-center justify-center text-white shadow-xs">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white">Custom Requests</p>
+                <p className="text-[11px] text-amber-200">Names, Dates & Photos</p>
+              </div>
+            </div>
+
+            {/* Floating Glass Badge 2 (Bottom Right) */}
+            <div className="absolute -bottom-5 -right-3 sm:-right-6 backdrop-blur-md bg-slate-900/80 border border-white/20 rounded-2xl p-3.5 sm:p-4 shadow-xl text-white flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xs">
+                <CheckCircle2 className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white">Real Flowers Preserved</p>
+                <p className="text-[11px] text-emerald-300">Non-yellowing crystal epoxy</p>
+              </div>
+            </div>
+
           </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10">
-            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white mb-1">2700+</span>
-              <span className="text-violet-200 text-sm font-medium">Happy Customers</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white mb-1">337+</span>
-              <span className="text-violet-200 text-sm font-medium">Creations</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white mb-1">100%</span>
-              <span className="text-violet-200 text-sm font-medium">Handmade</span>
-            </div>
+
+        </div>
+
+        {/* Stats Row across bottom */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 mt-16 border-t border-white/10 text-center">
+          <div className="space-y-1">
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">2,700+</p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Happy Customers</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">500+</p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Custom Creational Designs</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">4.9 ★</p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Customer Satisfaction</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">100%</p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Handcrafted with Love</p>
           </div>
         </div>
+
       </div>
     </div>
   );

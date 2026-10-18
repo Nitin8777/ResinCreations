@@ -31,6 +31,13 @@ const productSchema = new mongoose.Schema({
           if (item && typeof item === 'object' && item.url) return { url: item.url, publicId: item.publicId || '' };
           return null;
         }).filter(Boolean);
+
+        // Discard placeholder if real custom images are provided
+        const real = mapped.filter(item => !item.url.includes('placeholder.svg'));
+        if (real.length > 0) {
+          return real;
+        }
+
         return mapped.length > 0 ? mapped : [{ url: '/images/placeholder.svg', publicId: '' }];
       }
       return val;

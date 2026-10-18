@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Play, Heart, ExternalLink, Sparkles, RefreshCw } from 'lucide-react';
+import { Play, Heart, ExternalLink, Sparkles, RefreshCw, Eye } from 'lucide-react';
 
 function InstagramLogo({ className = "w-6 h-6" }) {
   return (
@@ -108,8 +108,8 @@ export default function InstagramReelsSection() {
                     <span className="w-1.5 h-1.5 rounded-full bg-pink-500"></span> Reel
                   </span>
                   {reel.views && (
-                    <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[10px] text-white/90">
-                      👁️ {reel.views}
+                    <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[10px] text-white/90 flex items-center gap-1">
+                      <Eye className="w-3 h-3 text-white/90" /> {reel.views}
                     </span>
                   )}
                 </div>

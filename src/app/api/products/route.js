@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product'; 
 
@@ -114,6 +115,14 @@ export async function POST(request) {
     }
 
     const product = await Product.create(body);
+
+    try {
+      revalidatePath('/');
+      revalidatePath('/products');
+    } catch (e) {
+      console.warn('Revalidation warning on POST:', e);
+    }
+
     return NextResponse.json({ success: true, product }, { status: 201 });
   } catch (error) {
     console.error('Error creating product:', error);

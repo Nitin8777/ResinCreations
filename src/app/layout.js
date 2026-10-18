@@ -18,12 +18,32 @@ const inter = Inter({
 export const metadata = {
   title: 'New Khushi Resin Creations | Handcrafted Resin Art',
   description: 'Premium handcrafted resin art, keychains, jewelry, frames, and custom nameplates.',
+  icons: {
+    icon: '/images/logo.jpg',
+    apple: '/images/logo.jpg',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900`}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 transition-colors duration-200`}>
         <CartProvider>
           <Navbar />
           <main className="min-h-screen">

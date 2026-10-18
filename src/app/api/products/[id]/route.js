@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product'; 
 
@@ -58,6 +59,17 @@ export async function PUT(request, { params }) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
     
+    try {
+      revalidatePath('/');
+      revalidatePath('/products');
+      revalidatePath(`/products/${id}`);
+      if (product.slug) {
+        revalidatePath(`/products/${product.slug}`);
+      }
+    } catch (e) {
+      console.warn('Revalidation warning on PUT:', e);
+    }
+
     return NextResponse.json({ success: true, product });
   } catch (error) {
     console.error('Error updating product:', error);
@@ -76,6 +88,17 @@ export async function DELETE(request, { params }) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
     
+    try {
+      revalidatePath('/');
+      revalidatePath('/products');
+      revalidatePath(`/products/${id}`);
+      if (product.slug) {
+        revalidatePath(`/products/${product.slug}`);
+      }
+    } catch (e) {
+      console.warn('Revalidation warning on DELETE:', e);
+    }
+
     return NextResponse.json({ success: true, message: 'Product deleted' });
   } catch (error) {
     console.error('Error deleting product:', error);

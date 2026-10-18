@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import Link from 'next/link';
 import {
   Sparkles,
@@ -51,22 +54,24 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 pt-8">
+    <div className="min-h-screen bg-violet-50/30 dark:bg-slate-950 pb-20 pt-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4">
         {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-500 mb-8">
-          <Link href="/" className="hover:text-violet-600">Home</Link> &gt; 
-          <Link href="/products" className="hover:text-violet-600 mx-1">Categories</Link> &gt; 
-          <span className="text-gray-900 mx-1">{catData.name}</span>
+        <nav className="text-sm text-gray-500 dark:text-slate-400 mb-8 flex items-center gap-1.5">
+          <Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link>
+          <span>/</span>
+          <Link href="/products" className="hover:text-violet-600 dark:hover:text-violet-400">Categories</Link>
+          <span>/</span>
+          <span className="text-gray-900 dark:text-white font-medium">{catData.name}</span>
         </nav>
 
         {/* Hero */}
-        <div className="bg-white rounded-3xl p-8 md:p-10 mb-10 text-center shadow-xs border border-violet-100 flex flex-col items-center relative overflow-hidden">
-          <div className="w-16 h-16 rounded-2xl bg-violet-100 text-violet-700 flex items-center justify-center mb-4 shadow-xs">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-10 mb-10 text-center shadow-sm border border-violet-100 dark:border-violet-900/40 flex flex-col items-center relative overflow-hidden">
+          <div className="w-16 h-16 rounded-2xl bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400 flex items-center justify-center mb-4 shadow-xs">
             <CatIcon className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 font-serif">{catData.name}</h1>
-          <p className="text-gray-600 max-w-xl text-sm sm:text-base leading-relaxed">{catData.description}</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 font-serif">{catData.name}</h1>
+          <p className="text-gray-600 dark:text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">{catData.description}</p>
         </div>
 
         {/* Products */}
@@ -77,9 +82,9 @@ export default async function CategoryPage({ params }) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
-            <p className="text-gray-500">No products found in this category right now.</p>
-            <Link href="/products" className="inline-block mt-4 text-violet-600 hover:underline">Browse all products</Link>
+          <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border border-violet-100 dark:border-violet-900/40">
+            <p className="text-gray-500 dark:text-slate-400 text-sm">No products found in this category right now.</p>
+            <Link href="/products" className="inline-block mt-4 text-violet-600 dark:text-violet-400 font-medium hover:underline text-sm">Browse all products</Link>
           </div>
         )}
       </div>

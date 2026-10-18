@@ -122,9 +122,15 @@ export default function AdminProducts() {
                 </tr>
               ) : (
                 products.map((product) => {
-                  const imgUrl = typeof product.images?.[0] === 'string'
-                    ? product.images[0]
-                    : (product.images?.[0]?.url || '/images/placeholder.svg');
+                  const rawImgs = Array.isArray(product.images) ? product.images : [];
+                  const nonPlaceholder = rawImgs.find(img => {
+                    const url = typeof img === 'string' ? img : img?.url;
+                    return url && !url.includes('placeholder.svg');
+                  });
+                  const primaryImg = nonPlaceholder || rawImgs[0];
+                  const imgUrl = typeof primaryImg === 'string'
+                    ? primaryImg
+                    : (primaryImg?.url || '/images/placeholder.svg');
 
                   const catDisplay = (product.category || '')
                     .split('-')

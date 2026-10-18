@@ -9,13 +9,13 @@ export const authOptions = {
         text: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-            async authorize(credentials) {
-        const inputId = (credentials?.text || credentials?.id || '').trim().toLowerCase();
-        const inputPassword = credentials?.password || '';
+      async authorize(credentials) {
+        const inputId = (credentials?.text || credentials?.email || credentials?.id || credentials?.username || '').trim().toLowerCase();
+        const inputPassword = (credentials?.password || '').trim();
 
-        // Yahan apni Admin ID aur Password set karein:
-        const configuredId = (process.env.ADMIN_ID || 'admin').trim().toLowerCase();
-        const configuredPassword = process.env.ADMIN_PASSWORD || 'admin123';
+        // Environment variables: ADMIN_ID or ADMIN_EMAIL
+        const configuredId = (process.env.ADMIN_ID || process.env.ADMIN_EMAIL || 'admin').trim().toLowerCase();
+        const configuredPassword = (process.env.ADMIN_PASSWORD || 'nitin').trim();
 
         // Match check
         if (inputId === configuredId && inputPassword === configuredPassword) {
@@ -23,7 +23,6 @@ export const authOptions = {
         }
 
         return null;
-      
       },
     }),
   ],

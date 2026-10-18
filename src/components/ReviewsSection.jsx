@@ -130,18 +130,18 @@ export default function ReviewsSection() {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-white border-t border-violet-100 relative">
+    <section className="py-20 px-4 md:px-8 bg-white dark:bg-slate-950 border-t border-violet-100 dark:border-violet-900/40 relative">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 text-violet-800 text-xs font-semibold uppercase tracking-wider mb-3">
-              <Star className="w-3.5 h-3.5 fill-violet-600 text-violet-600" /> Customer Reviews & Photos
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-300 text-xs font-semibold uppercase tracking-wider mb-3">
+              <Star className="w-3.5 h-3.5 fill-violet-600 text-violet-600 dark:fill-violet-400 dark:text-violet-400" /> Customer Reviews & Photos
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-violet-950 font-serif">
+            <h2 className="text-3xl md:text-4xl font-bold text-violet-950 dark:text-white font-serif">
               Loved by 2,700+ Art Enthusiasts
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base mt-2">
+            <p className="text-gray-600 dark:text-slate-300 text-sm sm:text-base mt-2">
               Real customer unboxing videos, photos, and feedback on their handmade resin orders.
             </p>
           </div>
@@ -156,9 +156,9 @@ export default function ReviewsSection() {
         </div>
 
         {/* Rating Scoreboard Banner */}
-        <div className="bg-gradient-to-br from-violet-50/70 via-purple-50/40 to-pink-50/30 rounded-3xl p-6 sm:p-8 mb-12 border border-violet-100/80 flex flex-col md:flex-row items-center gap-8 justify-between">
+        <div className="bg-gradient-to-br from-violet-50/70 via-purple-50/40 to-pink-50/30 dark:from-slate-900 dark:via-violet-950/40 dark:to-slate-900 rounded-3xl p-6 sm:p-8 mb-12 border border-violet-100/80 dark:border-violet-800/40 flex flex-col md:flex-row items-center gap-8 justify-between">
           <div className="flex items-center gap-5 text-center sm:text-left">
-            <div className="text-5xl sm:text-6xl font-black text-violet-950 font-serif tracking-tight">
+            <div className="text-5xl sm:text-6xl font-black text-violet-950 dark:text-white font-serif tracking-tight">
               {stats.averageRating || '5.0'}
             </div>
             <div>
@@ -167,10 +167,10 @@ export default function ReviewsSection() {
                   <Star key={i} className="w-5 h-5 fill-current" />
                 ))}
               </div>
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-sm font-semibold text-gray-800 dark:text-slate-200">
                 Based on {stats.totalReviews || reviews.length} verified buyer reviews
               </p>
-              <p className="text-xs text-gray-500">100% genuine handcrafted customer satisfaction</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">100% genuine handcrafted customer satisfaction</p>
             </div>
           </div>
 
@@ -180,13 +180,13 @@ export default function ReviewsSection() {
               const count = stats.breakdown?.[star] || 0;
               const percentage = stats.totalReviews > 0 ? (count / stats.totalReviews) * 100 : (star === 5 ? 90 : 5);
               return (
-                <div key={star} className="flex items-center gap-2 text-gray-600">
+                <div key={star} className="flex items-center gap-2 text-gray-600 dark:text-slate-300">
                   <span className="w-3 text-right font-medium">{star}</span>
                   <Star className="w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
-                  <div className="flex-1 h-2 bg-gray-200/80 rounded-full overflow-hidden">
-                    <div className="h-full bg-violet-600 rounded-full" style={{ width: `${percentage}%` }}></div>
+                  <div className="flex-1 h-2 bg-gray-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-full bg-violet-600 dark:bg-violet-500 rounded-full" style={{ width: `${percentage}%` }}></div>
                   </div>
-                  <span className="w-6 text-right text-gray-400 font-mono">{count}</span>
+                  <span className="w-6 text-right text-gray-400 dark:text-slate-500 font-mono">{count}</span>
                 </div>
               );
             })}
@@ -201,7 +201,7 @@ export default function ReviewsSection() {
             return (
               <div
                 key={rev._id}
-                className="bg-white rounded-3xl p-6 sm:p-7 border border-violet-100 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-7 border border-violet-100 dark:border-violet-900/40 shadow-sm hover:shadow-md transition flex flex-col justify-between"
               >
                 <div>
                   {/* Rating Stars & Verified Badge */}
@@ -210,20 +210,20 @@ export default function ReviewsSection() {
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${i < rev.rating ? 'fill-[#D4AF37]' : 'text-gray-200'}`}
+                          className={`w-4 h-4 ${i < rev.rating ? 'fill-[#D4AF37]' : 'text-gray-200 dark:text-slate-700'}`}
                         />
                       ))}
                     </div>
 
                     {rev.verified && (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Verified Buyer
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/40">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> Verified Buyer
                       </span>
                     )}
                   </div>
 
                   {/* Comment */}
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
+                  <p className="text-gray-700 dark:text-slate-300 text-sm leading-relaxed mb-4 italic">
                     "{rev.comment}"
                   </p>
 
@@ -236,7 +236,7 @@ export default function ReviewsSection() {
                           <div
                             key={mIdx}
                             onClick={() => setActiveMedia(item)}
-                            className="relative w-16 h-16 rounded-xl overflow-hidden cursor-pointer border border-violet-200 hover:opacity-90 group transition bg-slate-900 flex-shrink-0"
+                            className="relative w-16 h-16 rounded-xl overflow-hidden cursor-pointer border border-violet-200 dark:border-violet-800/60 hover:opacity-90 group transition bg-slate-900 flex-shrink-0"
                           >
                             {isVid ? (
                               <div className="w-full h-full flex items-center justify-center bg-violet-950 text-white">
@@ -258,12 +258,12 @@ export default function ReviewsSection() {
                 </div>
 
                 {/* Footer details: Customer info & Product Tag */}
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between text-xs text-gray-500 dark:text-slate-400">
                   <div>
-                    <p className="font-bold text-gray-900 text-sm">{rev.name}</p>
-                    <p className="text-violet-600 font-medium">{rev.productName}</p>
+                    <p className="font-bold text-gray-900 dark:text-white text-sm">{rev.name}</p>
+                    <p className="text-violet-600 dark:text-violet-400 font-medium">{rev.productName}</p>
                   </div>
-                  <span className="text-gray-400">
+                  <span className="text-gray-400 dark:text-slate-500">
                     {new Date(rev.createdAt).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}
                   </span>
                 </div>
@@ -298,23 +298,23 @@ export default function ReviewsSection() {
       {/* Submit Review Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-violet-100 my-8 relative">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-violet-100 dark:border-violet-900/50 my-8 relative">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 text-gray-400 hover:text-gray-600 p-1.5 rounded-full hover:bg-gray-100 transition"
+              className="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-violet-950 font-serif">Share Your Experience</h3>
-              <p className="text-gray-500 text-xs sm:text-sm mt-1">
+              <h3 className="text-2xl font-bold text-violet-950 dark:text-white font-serif">Share Your Experience</h3>
+              <p className="text-gray-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
                 Upload your resin photo or unboxing video to be featured on our site!
               </p>
             </div>
 
             {feedbackMsg && (
-              <div className="mb-4 p-3.5 rounded-xl bg-violet-50 text-violet-800 text-xs font-semibold border border-violet-200">
+              <div className="mb-4 p-3.5 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-800 dark:text-violet-300 text-xs font-semibold border border-violet-200 dark:border-violet-800/50">
                 {feedbackMsg}
               </div>
             )}
@@ -322,7 +322,7 @@ export default function ReviewsSection() {
             <form onSubmit={handleReviewSubmit} className="space-y-4">
               {/* Star Rating Selector */}
               <div>
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                   Overall Rating *
                 </label>
                 <div className="flex items-center gap-2">
@@ -339,19 +339,19 @@ export default function ReviewsSection() {
                         className={`w-7 h-7 ${
                           star <= (hoverRating || rating)
                             ? 'text-[#D4AF37] fill-[#D4AF37]'
-                            : 'text-gray-200'
+                            : 'text-gray-200 dark:text-slate-700'
                         }`}
                       />
                     </button>
                   ))}
-                  <span className="text-sm font-bold text-gray-700 ml-2">{rating} out of 5 Stars</span>
+                  <span className="text-sm font-bold text-gray-700 dark:text-slate-200 ml-2">{rating} out of 5 Stars</span>
                 </div>
               </div>
 
               {/* Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                     Your Name *
                   </label>
                   <input
@@ -360,11 +360,11 @@ export default function ReviewsSection() {
                     placeholder="e.g. Ananya Rao"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-700"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                     Email Address
                   </label>
                   <input
@@ -372,36 +372,36 @@ export default function ReviewsSection() {
                     placeholder="ananya@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-700"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   />
                 </div>
               </div>
 
               {/* Product Purchased */}
               <div>
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   Product Purchased
                 </label>
                 <select
                   value={productName}
                   onChange={(e) => setProductName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 bg-white text-gray-700"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-800 dark:text-white"
                 >
-                  <option>Galaxy Resin Keychain</option>
-                  <option>Floral Resin Photo Frame</option>
-                  <option>Custom Name Nameplate</option>
-                  <option>Rose Gold Resin Earrings</option>
-                  <option>Ocean Wave Keychain</option>
-                  <option>Pearl Resin Pendant</option>
-                  <option>Diwali Special Diya Set</option>
-                  <option>Custom Resin Art Piece</option>
-                  <option>Other Creation</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Galaxy Resin Keychain</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Floral Resin Photo Frame</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Custom Name Nameplate</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Rose Gold Resin Earrings</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Ocean Wave Keychain</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Pearl Resin Pendant</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Diwali Special Diya Set</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Custom Resin Art Piece</option>
+                  <option className="dark:bg-slate-800 dark:text-white">Other Creation</option>
                 </select>
               </div>
 
               {/* Review Comments */}
               <div>
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   Review & Feedback *
                 </label>
                 <textarea
@@ -410,20 +410,20 @@ export default function ReviewsSection() {
                   placeholder="How was the resin finish, colors, customization, and packaging?"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-700"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-600 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500"
                 ></textarea>
               </div>
 
               {/* Photo / Video Upload Section */}
               <div>
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                <label className="block text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
                   <span>Upload Photos or Videos (Optional)</span>
-                  <span className="text-[11px] text-gray-400 font-normal">PNG, JPG, MP4</span>
+                  <span className="text-[11px] text-gray-400 dark:text-slate-500 font-normal">PNG, JPG, MP4</span>
                 </label>
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {mediaList.map((item, idx) => (
-                    <div key={idx} className="relative w-16 h-16 rounded-xl overflow-hidden border border-violet-200 group bg-slate-100 flex-shrink-0">
+                    <div key={idx} className="relative w-16 h-16 rounded-xl overflow-hidden border border-violet-200 dark:border-violet-800 group bg-slate-100 dark:bg-slate-800 flex-shrink-0">
                       {item.mediaType === 'video' ? (
                         <div className="w-full h-full flex items-center justify-center bg-violet-900 text-white">
                           <Video className="w-5 h-5" />
@@ -445,7 +445,7 @@ export default function ReviewsSection() {
                     type="button"
                     disabled={uploadingFiles}
                     onClick={() => fileInputRef.current?.click()}
-                    className="w-16 h-16 rounded-xl border-2 border-dashed border-violet-300 hover:border-violet-500 flex flex-col items-center justify-center text-violet-600 text-[10px] font-medium hover:bg-violet-50 transition cursor-pointer"
+                    className="w-16 h-16 rounded-xl border-2 border-dashed border-violet-300 dark:border-violet-700 hover:border-violet-500 dark:hover:border-violet-400 flex flex-col items-center justify-center text-violet-600 dark:text-violet-400 text-[10px] font-medium hover:bg-violet-50 dark:hover:bg-slate-800 transition cursor-pointer"
                   >
                     {uploadingFiles ? (
                       <Loader2 className="w-5 h-5 animate-spin" />

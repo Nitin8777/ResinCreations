@@ -32,9 +32,12 @@ export default function EditProduct() {
           typeof img === 'string' ? img : (img?.url || '')
         ).filter(Boolean) || [];
 
+        const realImgs = normalizedImages.filter(u => !u.includes('placeholder.svg'));
+        const initialImages = realImgs.length > 0 ? realImgs : normalizedImages;
+
         setFormData({
           ...product,
-          images: normalizedImages,
+          images: initialImages,
           tags: product.tags ? product.tags.join(', ') : '',
           customizationOptions: product.customizationOptions?.map(opt => ({
             ...opt,
@@ -82,10 +85,16 @@ export default function EditProduct() {
 
       const data = await res.json();
       if (data.url) {
-        setFormData(prev => ({
-          ...prev,
-          images: [...(prev.images || []), data.url]
-        }));
+        setFormData(prev => {
+          const existing = (prev?.images || []).filter(u => {
+            const str = typeof u === 'string' ? u : (u?.url || '');
+            return str && !str.includes('placeholder.svg');
+          });
+          return {
+            ...prev,
+            images: [data.url, ...existing]
+          };
+        });
       } else {
         alert(data.error || 'Failed to upload image');
       }
@@ -298,7 +307,16 @@ export default function EditProduct() {
               type="button"
               onClick={() => {
                 if (imageUrlInput.trim()) {
-                  setFormData(prev => ({ ...prev, images: [...(prev.images || []), imageUrlInput.trim()] }));
+                  setFormData(prev => {
+                    const existing = (prev?.images || []).filter(u => {
+                      const str = typeof u === 'string' ? u : (u?.url || '');
+                      return str && !str.includes('placeholder.svg');
+                    });
+                    return {
+                      ...prev,
+                      images: [imageUrlInput.trim(), ...existing]
+                    };
+                  });
                   setImageUrlInput('');
                 }
               }}

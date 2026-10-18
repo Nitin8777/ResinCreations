@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import Link from 'next/link';
 import {
   Sparkles,
@@ -93,7 +96,7 @@ export default async function Home() {
   let liveProducts = [];
   try {
     await dbConnect();
-    const fetched = await Product.find({ inStock: true })
+    const fetched = await Product.find({ inStock: { $ne: false } })
       .sort({ featured: -1, bestseller: -1, createdAt: -1 })
       .limit(8)
       .lean();
@@ -192,69 +195,111 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto bg-white">
-        <div className="flex justify-between items-end mb-10">
-          <h2 className="text-3xl font-bold text-violet-900 font-serif">Featured Products</h2>
-          <Link href="/products" className="text-violet-600 hover:text-violet-800 font-medium hidden sm:block">
-            View All →
+    
+
+      {/* Featured Products Showcase */}
+      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-100 text-violet-700 text-xs font-semibold uppercase tracking-wider mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Bestselling Creations</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-serif">Featured Creations</h2>
+            <p className="text-gray-600 text-sm mt-1 max-w-xl">
+              Most loved pieces handcrafted by our artisans, available for immediate shipping or custom ordering.
+            </p>
+          </div>
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 hover:text-violet-800 transition-colors group"
+          >
+            <span>View All Products</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayProducts.map(product => (
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
+          {displayProducts.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
-        <div className="mt-8 text-center sm:hidden">
-          <Link href="/products" className="inline-block px-6 py-2 bg-violet-100 text-violet-700 rounded-full font-medium">
+
+        <div className="mt-10 text-center sm:hidden">
+          <Link
+            href="/products"
+            className="inline-block px-8 py-3 bg-violet-600 text-white rounded-full text-sm font-semibold shadow-md shadow-violet-600/20"
+          >
             View All Products
           </Link>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-violet-900 mb-10 font-serif">Why Choose Us</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto border-t border-violet-100/60">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 text-amber-800 text-xs font-semibold uppercase tracking-wider mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <span>The Khushi Resin Difference</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-serif">
+            Why Discerning Collectors Choose Us
+          </h2>
+          <p className="mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+            Every creation is poured with artist-grade epoxy, genuine botanicals, and obsessive care.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {[
-            { Icon: Sparkles, title: '100% Handmade', desc: 'Crafted with love and extreme attention to detail.' },
-            { Icon: ShieldCheck, title: 'Premium Quality', desc: 'Using only top-tier epoxy resin and materials.' },
-            { Icon: Wand2, title: 'Custom Designs', desc: 'Your vision brought to life perfectly.' },
-            { Icon: Truck, title: 'Safe Delivery', desc: 'Securely packaged to reach you safely.' }
+            {
+              Icon: Sparkles,
+              title: '100% Handcrafted',
+              desc: 'Poured layer by layer with real dried petals, gold foils, and custom details.',
+              accent: 'from-amber-50 to-orange-100 text-amber-600',
+            },
+            {
+              Icon: ShieldCheck,
+              title: 'Crystal Clear & Non-Yellowing',
+              desc: 'High-grade UV-resistant epoxy ensures your memories stay vibrant forever.',
+              accent: 'from-violet-50 to-purple-100 text-violet-600',
+            },
+            {
+              Icon: Wand2,
+              title: 'Bespoke Personalization',
+              desc: 'Names, anniversary dates, photos, and color palettes tailored to your vision.',
+              accent: 'from-pink-50 to-rose-100 text-rose-600',
+            },
+            {
+              Icon: Truck,
+              title: 'Safe All-India Delivery',
+              desc: 'Triple-cushioned shockproof packaging delivered securely to your doorstep.',
+              accent: 'from-teal-50 to-emerald-100 text-teal-600',
+            },
           ].map((feature, idx) => {
             const FeatIcon = feature.Icon;
             return (
-              <div key={idx} className="text-center p-6 border border-violet-100 rounded-2xl bg-white shadow-xs hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
+              <div
+                key={idx}
+                className="text-center p-7 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-lg hover:border-violet-200 transition-all duration-300 group hover:-translate-y-1"
+              >
+                <div
+                  className={`w-14 h-14 mx-auto mb-5 rounded-2xl bg-gradient-to-br ${feature.accent} flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform duration-300`}
+                >
                   <FeatIcon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-semibold text-violet-900 mb-2 font-serif">{feature.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-serif">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                  {feature.desc}
+                </p>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* Instagram Section */}
-      <section className="py-16 px-4 md:px-8 bg-violet-50">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-violet-900 mb-4 font-serif">Follow us on Instagram</h2>
-          <a href="https://instagram.com/newkhushiresincreations" target="_blank" rel="noreferrer" className="text-violet-600 font-medium hover:underline mb-10 inline-block">@newkhushiresincreations</a>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="aspect-square bg-violet-200 rounded-xl overflow-hidden relative group">
-                {/* Placeholder for IG images */}
-                <div className="absolute inset-0 bg-violet-300 animate-pulse"></div>
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white">❤️</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* Customer Reviews & Photo/Video Uploads */}
       <ReviewsSection />
 
