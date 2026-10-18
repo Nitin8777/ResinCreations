@@ -6,22 +6,24 @@ export const authOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        text: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        const inputEmail = (credentials?.email || '').trim().toLowerCase();
+            async authorize(credentials) {
+        const inputId = (credentials?.text || credentials?.id || '').trim().toLowerCase();
         const inputPassword = credentials?.password || '';
 
-        const configuredEmail = (process.env.ADMIN_EMAIL || 'admin@khushiresin.com').trim().toLowerCase();
+        // Yahan apni Admin ID aur Password set karein:
+        const configuredId = (process.env.ADMIN_ID || 'admin').trim().toLowerCase();
         const configuredPassword = process.env.ADMIN_PASSWORD || 'admin123';
 
-        // Strictly match with credentials configured in .env.local
-        if (inputEmail === configuredEmail && inputPassword === configuredPassword) {
-          return { id: '1', name: 'Admin', email: inputEmail, role: 'admin' };
+        // Match check
+        if (inputId === configuredId && inputPassword === configuredPassword) {
+          return { id: '1', name: 'Admin', role: 'admin' };
         }
 
         return null;
+      
       },
     }),
   ],
