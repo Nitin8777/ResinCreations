@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   Sparkles,
   MessageCircle,
@@ -9,8 +9,8 @@ import {
   Star,
   CheckCircle2,
   Heart,
-  Truck
-} from 'lucide-react';
+  Truck,
+} from "lucide-react";
 
 export default function HeroBanner() {
   return (
@@ -22,10 +22,8 @@ export default function HeroBanner() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
           {/* Left Column: Headlines & CTA */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            
             {/* Eyebrow Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-semibold tracking-wider uppercase shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
@@ -34,12 +32,18 @@ export default function HeroBanner() {
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif tracking-tight leading-[1.15] text-white">
-              Preserving Your <span className="bg-gradient-to-r from-amber-200 via-pink-200 to-violet-300 bg-clip-text text-transparent">Precious Moments</span> in Crystal-Clear Resin.
+              Preserving Your{" "}
+              <span className="bg-gradient-to-r from-amber-200 via-pink-200 to-violet-300 bg-clip-text text-transparent">
+                Precious Moments
+              </span>{" "}
+              in Crystal-Clear Resin.
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Hand-poured with real preserved botanicals, 24K gold foil flakes, and personalized details. From wedding keepsake photo frames to bespoke agate nameplates and sparkling jewelry.
+              Hand-poured with real preserved botanicals, 24K gold foil flakes,
+              and personalized details. From wedding keepsake photo frames to
+              bespoke agate nameplates and sparkling jewelry.
             </p>
 
             {/* CTA Buttons */}
@@ -52,7 +56,7 @@ export default function HeroBanner() {
                 <span>Explore Collections</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
-              
+
               <a
                 href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20order%20a%20custom%20resin%20creation.%20Can%20you%20help%20me?"
                 target="_blank"
@@ -86,7 +90,7 @@ export default function HeroBanner() {
                   +2.7k
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-1.5">
                 <div className="flex text-amber-400">
                   {[...Array(5)].map((_, i) => (
@@ -94,25 +98,23 @@ export default function HeroBanner() {
                   ))}
                 </div>
                 <span className="font-semibold text-white">4.9/5 Rating</span>
-                <span className="text-slate-400">· 2,700+ Delighted Customers</span>
+                <span className="text-slate-400">
+                  · 2,700+ Delighted Customers
+                </span>
               </div>
             </div>
-
           </div>
 
           {/* Right Column: Layered 3D Visual Art Showcase */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            
             {/* Main Showcase Frame */}
             <div className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 p-2 bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-md group">
               <div className="w-full h-full rounded-2xl overflow-hidden relative">
-                <img
-                  src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1000&q=80"
-                  alt="Handcrafted Resin Masterpiece"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
+                <video autoPlay muted loop playsInline>
+                  <source src="/images/video.mp4" type="video/mp4" />
+                </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                
+
                 {/* Bottom caption inside photo */}
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-[11px] font-semibold text-amber-300 uppercase tracking-wider">
@@ -132,7 +134,9 @@ export default function HeroBanner() {
               </div>
               <div>
                 <p className="text-xs font-bold text-white">Custom Requests</p>
-                <p className="text-[11px] text-amber-200">Names, Dates & Photos</p>
+                <p className="text-[11px] text-amber-200">
+                  Names, Dates & Photos
+                </p>
               </div>
             </div>
 
@@ -142,35 +146,52 @@ export default function HeroBanner() {
                 <CheckCircle2 className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-bold text-white">Real Flowers Preserved</p>
-                <p className="text-[11px] text-emerald-300">Non-yellowing crystal epoxy</p>
+                <p className="text-xs font-bold text-white">
+                  Real Flowers Preserved
+                </p>
+                <p className="text-[11px] text-emerald-300">
+                  Non-yellowing crystal epoxy
+                </p>
               </div>
             </div>
-
           </div>
-
         </div>
 
         {/* Stats Row across bottom */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 mt-16 border-t border-white/10 text-center">
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">2,700+</p>
-            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Happy Customers</p>
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">
+              2,700+
+            </p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">
+              Happy Customers
+            </p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">500+</p>
-            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Custom Creational Designs</p>
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">
+              500+
+            </p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">
+              Custom Creational Designs
+            </p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">4.9 ★</p>
-            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Customer Satisfaction</p>
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">
+              4.9 ★
+            </p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">
+              Customer Satisfaction
+            </p>
           </div>
           <div className="space-y-1">
-            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">100%</p>
-            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">Handcrafted with Love</p>
+            <p className="text-2xl sm:text-3xl font-bold font-serif text-white">
+              100%
+            </p>
+            <p className="text-xs text-slate-300 font-medium uppercase tracking-wider">
+              Handcrafted with Love
+            </p>
           </div>
         </div>
-
       </div>
     </div>
   );

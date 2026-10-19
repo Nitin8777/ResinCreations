@@ -30,7 +30,7 @@ const categories = [
     tag: 'Trending',
     subtitle: 'Custom Alphabet & Shimmer',
     description: 'Personalized initial letters, glitter flakes, and pocket-sized keepsakes.',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    image: '/images/key1 (1).jpg',
     itemCount: '15+ Designs',
   },
   {
@@ -40,7 +40,7 @@ const categories = [
     tag: 'Bestseller',
     subtitle: 'Botanical Floral Elegance',
     description: 'Real dried petals and golden flakes set in crystal earrings, rings & pendants.',
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+    image: '/images/key1 (3).jpg',
     itemCount: '24+ Designs',
   },
   {
@@ -50,7 +50,7 @@ const categories = [
     tag: 'Preserved Forever',
     subtitle: 'Timeless Keepsakes',
     description: 'Preserve wedding, anniversary, and cherished moments encased in gloss resin.',
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+    image: '/images/couple.jpg',
     itemCount: '12+ Designs',
   },
   {
@@ -60,7 +60,7 @@ const categories = [
     tag: 'Customizable',
     subtitle: 'Agate & Gold Geode Decor',
     description: 'Statement entrance and desk nameplates tailored with embossed typography.',
-    image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80',
+    image: '/images/plate.jpg',
     itemCount: '10+ Designs',
   },
   {
@@ -70,7 +70,7 @@ const categories = [
     tag: 'Bespoke Art',
     subtitle: 'Varmala & Made-to-Order',
     description: 'Wedding varmala preservation, resin clocks, coasters, and custom creations.',
-    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80',
+    image: '/images/custom.jpg',
     itemCount: 'Made to Order',
   },
   {
@@ -80,7 +80,7 @@ const categories = [
     tag: 'Limited Edition',
     subtitle: 'Pooja Thalis & Hampers',
     description: 'Festive pooja thalis, custom rakhi designs, and festive celebration hampers.',
-    image: 'https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=800&q=80',
+    image: '/images/fast2.jpg',
     itemCount: 'Festive Deals',
   },
 ];
