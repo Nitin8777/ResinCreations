@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Lock } from 'lucide-react';
+import Link from 'next/link';
+import { Lock, ArrowLeft } from 'lucide-react';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -91,6 +92,16 @@ export default function AdminLogin() {
             >
               {loading ? 'Signing in...' : 'Sign In as Admin'}
             </button>
+
+            <div className="pt-2 text-center">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Return to Store Home</span>
+              </Link>
+            </div>
           </form>
         </div>
       </div>

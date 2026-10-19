@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { CartProvider } from '@/components/CartProvider';
+import AuthProvider from '@/components/AuthProvider';
+import AutoLogoutOnExitAdmin from '@/components/AutoLogoutOnExitAdmin';
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
@@ -44,14 +46,17 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 transition-colors duration-200`}>
-        <CartProvider>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </CartProvider>
+        <AuthProvider>
+          <AutoLogoutOnExitAdmin />
+          <CartProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

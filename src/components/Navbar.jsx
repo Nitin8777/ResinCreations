@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import {
   Gem,
   Menu,
@@ -44,8 +45,19 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
   
   const pathname = usePathname();
+  const sessionContext = useSession();
+  const session = sessionContext?.data;
   const { getCartCount, isLoaded } = useCart();
   const cartCount = isLoaded ? getCartCount() : 0;
+
+  // Auto-logout admin when clicking Home if admin session is active
+  const handleHomeClick = async (e) => {
+    if (session?.user) {
+      e?.preventDefault();
+      setMobileMenuOpen(false);
+      await signOut({ callbackUrl: '/' });
+    }
+  };
 
   useEffect(() => {
     // Check initial dark mode from DOM or localStorage
@@ -117,7 +129,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
+            <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2.5 group">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-xs border border-violet-100/80 group-hover:scale-105 transition-transform duration-300 shrink-0 bg-white">
                 <img
                   src="/images/logo.jpg"
@@ -139,6 +151,7 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-7">
               <Link 
                 href="/"
+                onClick={handleHomeClick}
                 className={cn(
                   "text-sm font-semibold transition-colors hover:text-violet-600 py-1 relative",
                   pathname === '/' ? "text-violet-700 font-bold" : "text-gray-700"
@@ -306,10 +319,18 @@ export default function Navbar() {
               {/* Admin Link */}
               <Link 
                 href="/admin" 
-                className="hidden md:flex w-9 h-9 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 items-center justify-center transition-colors" 
+                className={cn(
+                  "hidden md:flex items-center justify-center transition-all",
+                  session?.user
+                    ? "px-3 py-1.5 rounded-full bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300 text-xs font-semibold hover:bg-violet-200 border border-violet-200 dark:border-violet-700 gap-1.5 shadow-xs"
+                    : "w-9 h-9 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700"
+                )}
                 aria-label="Admin"
+                title={session?.user ? "Admin Panel (Active Session)" : "Admin Portal"}
               >
+                {session?.user && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />}
                 <User className="w-4 h-4" />
+                {session?.user && <span className="text-[11px] font-bold">Admin</span>}
               </Link>
 
               {/* Mobile Menu Toggle */}
@@ -373,7 +394,7 @@ export default function Navbar() {
         )}
       >
         <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-violet-50/50">
-          <div className="flex items-center gap-2.5">
+          <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0 border border-violet-100 bg-white shadow-xs">
               <img
                 src="/images/logo.jpg"
@@ -385,7 +406,7 @@ export default function Navbar() {
               <span className="font-bold font-serif text-gray-900 leading-tight">Khushi Resin</span>
               <span className="text-[9px] uppercase tracking-wider text-violet-600 font-semibold">Studio</span>
             </div>
-          </div>
+          </Link>
           <button onClick={() => setMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-800 p-1">
             <X className="w-5 h-5" />
           </button>
@@ -397,6 +418,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.path}
+                onClick={link.path === '/' ? handleHomeClick : () => setMobileMenuOpen(false)}
                 className={cn(
                   "px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors",
                   pathname === link.path ? "bg-violet-50 text-violet-700" : "text-gray-700 hover:bg-gray-50"
